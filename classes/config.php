@@ -5,7 +5,7 @@
         /**
          * Constructor
          */
-        public function __construct ()
+        public function __construct()
         {
 
             $this->site_url = 'http://192.168.33.10/personal-playlizt';
@@ -22,7 +22,7 @@
         /**
          * Method to deal with error reporting
          */
-        public function error_reporting ()
+        public function error_reporting()
         {
 
             if ($debug) {

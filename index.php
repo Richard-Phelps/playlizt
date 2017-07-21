@@ -1,4 +1,6 @@
 <?php
-    require_once('classes/autoload.php');
-    $config = new config();
+ini_set('display_errors', 'on');
+error_reporting(E_ALL);
+    require_once('inc/init.php');
+    // $config = new config();
 ?>
