@@ -1,6 +1,5 @@
 <?php
-ini_set('display_errors', 'on');
-error_reporting(E_ALL);
     require_once('inc/init.php');
-    // $config = new config();
+    $prep = $db->prepare("INSERT INTO playlists WHERE (user_associated, user, created) VALUES('0', '0', NOW()");
+    $prep->execute();
 ?>

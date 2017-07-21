@@ -9,25 +9,42 @@
         {
 
             $this->site_url = 'http://192.168.33.10/personal-playlizt';
-            $this->debug    = true;
             $this->db_host  = 'localhost';
             $this->db_user  = 'root';
             $this->db_pass  = 'root';
             $this->db_name  = 'personal_playlizt';
-
-            $this->error_reporting();
+            $this->charset  = 'utf8';
 
         }
 
         /**
-         * Method to deal with error reporting
+         * Establish a connection to the database
          */
-        public function error_reporting()
+        public function db_connect()
         {
 
-            if ($debug) {
-                ini_set('display_errors', 'on');
-                error_reporting(E_ALL);
+            $options = [
+                PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                PDO::ATTR_EMULATE_PREPARES   => false,
+            ];
+
+            // Try to connect to the database and catch the errors if it fails
+            try {
+
+                $connection = new PDO(
+                    'mysql:host=' . $this->db_host . ';dbname=' . $this->db_name . ';post=3306;charset=' . $this->charset,
+                    $this->db_user,
+                    $this->db_pass,
+                    $options
+                );
+
+                return $connection;
+
+            } catch (PDOException $error) {
+
+                echo 'Connection failed: ' . $error->getMessage();
+
             }
 
         }
