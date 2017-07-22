@@ -3,6 +3,9 @@
 
 <head>
 
+    <!-- Title -->
+    <title>Playlizt - <?php echo $page_title; ?></title>
+
     <!-- Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 

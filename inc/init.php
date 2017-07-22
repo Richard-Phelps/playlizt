@@ -7,6 +7,9 @@
         require_once('classes/' . $class . '.php');
     });
 
-    $config = new config();
-    $db     = $config->db_connect();
+    include('functions.php');
+
+    $config     = new config();
+    $db         = $config->db_connect();
+    $page_title = get_page_title($_SERVER['REQUEST_URI']);
 ?>

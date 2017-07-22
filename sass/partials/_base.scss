@@ -25,6 +25,10 @@ html, body {
     background-color: $orange;
 }
 
+.orange-bg-hover:hover {
+    background-color: $light-orange;
+}
+
 .light-grey-bg {
     background-color: $light-grey;
 }
@@ -47,6 +51,14 @@ html, body {
 
 .mb0 {
     margin-bottom: 0;
+}
+
+.pt50 {
+    padding-top: 50px;
+}
+
+.pt25i {
+    padding-top: 25px !important;
 }
 
 /**

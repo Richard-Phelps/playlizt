@@ -478,16 +478,21 @@ html, body {
 }
 
 /* line 28, ../sass/partials/_base.scss */
+.orange-bg-hover:hover {
+  background-color: #FF9800;
+}
+
+/* line 32, ../sass/partials/_base.scss */
 .light-grey-bg {
   background-color: #FAFAFA;
 }
 
-/* line 32, ../sass/partials/_base.scss */
+/* line 36, ../sass/partials/_base.scss */
 .white-text {
   color: #FFFFFF;
 }
 
-/* line 36, ../sass/partials/_base.scss */
+/* line 40, ../sass/partials/_base.scss */
 .orange-text {
   color: #F57C00;
 }
@@ -495,20 +500,30 @@ html, body {
 /**
  * Margin and padding
  */
-/* line 44, ../sass/partials/_base.scss */
+/* line 48, ../sass/partials/_base.scss */
 .margin0 {
   margin: 0;
 }
 
-/* line 48, ../sass/partials/_base.scss */
+/* line 52, ../sass/partials/_base.scss */
 .mb0 {
   margin-bottom: 0;
+}
+
+/* line 56, ../sass/partials/_base.scss */
+.pt50 {
+  padding-top: 50px;
+}
+
+/* line 60, ../sass/partials/_base.scss */
+.pt25i {
+  padding-top: 25px !important;
 }
 
 /**
  * Typography
  */
-/* line 56, ../sass/partials/_base.scss */
+/* line 68, ../sass/partials/_base.scss */
 html, body {
   font-family: 'Roboto', sans-serif;
 }
@@ -516,28 +531,20 @@ html, body {
 /**
  * Other
  */
-/* line 64, ../sass/partials/_base.scss */
+/* line 76, ../sass/partials/_base.scss */
 .smooth-box-shadow {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
 
 /**
- * Site wide
- */
-/* line 11, ../sass/styles.scss */
-.page-wrapper {
-  padding-top: 50px;
-}
-
-/**
  * Forms
  */
-/* line 19, ../sass/styles.scss */
+/* line 11, ../sass/styles.scss */
 .input-field input[type=text]:focus + label {
   color: #F57C00 !important;
 }
 
-/* line 23, ../sass/styles.scss */
+/* line 15, ../sass/styles.scss */
 .input-field input[type=text]:focus {
   border-bottom: 1px solid #F57C00 !important;
   box-shadow: 0 1px 0 0 #F57C00 !important;
@@ -546,17 +553,17 @@ html, body {
 /**
  * Header
  */
-/* line 32, ../sass/styles.scss */
+/* line 24, ../sass/styles.scss */
 header {
   padding: 15px 0;
 }
 
-/* line 36, ../sass/styles.scss */
+/* line 28, ../sass/styles.scss */
 .header-text-size {
   font-size: 24px;
 }
 
-/* line 40, ../sass/styles.scss */
+/* line 32, ../sass/styles.scss */
 .header-line-height {
   line-height: 1.5;
 }

@@ -2,16 +2,26 @@
 
 <?php require_once('inc/header.php'); ?>
 
-<div class="page-wrapper">
+<div class="pt50">
 
     <div class="container">
 
         <div class="row">
 
-            <div class="input-field col s12">
-                <input id="playlist_name" type="text">
-                <label for="playlist_name" class="orange-text-focus-important">Name Your Playlist</label>
-            </div>
+            <form action="<?php echo $config->site_url; ?>/create-playlist/" method="POST">
+
+                <div class="input-field col m10">
+                    <input name="playlist_name" id="playlist_name" type="text" autocomplete="off">
+                    <label for="playlist_name" class="orange-text-focus-important">Name Your Playlist</label>
+                </div>
+
+                <div class="col m2 pt25i right-align">
+                    <button class="btn waves-effect waves-light orange-bg orange-bg-hover" type="submit" name="playlist_go">Go
+                        <i class="material-icons right">keyboard_arrow_right</i>
+                    </button>
+                </div>
+
+            </form>
 
         </div>
 
