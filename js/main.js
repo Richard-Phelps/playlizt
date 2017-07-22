@@ -51,4 +51,12 @@ function is_valid_email(email) {
 
     });
 
+    /**
+     * This will fade the alert box out
+     */
+
+    $('#alert-close').click(function () {
+        $('#alert-box').fadeOut('slow');
+    });
+
 })(jQuery);

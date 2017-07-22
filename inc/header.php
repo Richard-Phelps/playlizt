@@ -19,7 +19,7 @@
 
 <body class="light-grey-bg">
 
-<header class="orange-bg white-text smooth-box-shadow">
+<header class="main-bg white-text smooth-box-shadow">
 
     <div class="container">
 

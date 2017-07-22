@@ -77,5 +77,16 @@
 
         }
 
+        /**
+         * This method will remove all errors in the sesssion
+         */
+
+        public function reset()
+        {
+
+            $_SESSION['errors'] = '';
+
+        }
+
     }
 ?>

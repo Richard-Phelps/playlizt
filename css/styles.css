@@ -473,12 +473,12 @@ html, body {
  * Colours
  */
 /* line 24, ../sass/partials/_base.scss */
-.orange-bg {
+.main-bg {
   background-color: #F57C00;
 }
 
 /* line 28, ../sass/partials/_base.scss */
-.orange-bg-hover:hover {
+.main-bg-hover:hover {
   background-color: #FF9800;
 }
 
@@ -488,34 +488,39 @@ html, body {
 }
 
 /* line 36, ../sass/partials/_base.scss */
+.white-bg {
+  background-color: #FFFFFF;
+}
+
+/* line 40, ../sass/partials/_base.scss */
 .white-text {
   color: #FFFFFF;
 }
 
-/* line 40, ../sass/partials/_base.scss */
-.orange-text-important {
-  color: #F57C00 !important;
+/* line 44, ../sass/partials/_base.scss */
+.main-text {
+  color: #F57C00;
 }
 
 /**
  * Margin and padding
  */
-/* line 48, ../sass/partials/_base.scss */
+/* line 52, ../sass/partials/_base.scss */
 .margin0 {
   margin: 0;
 }
 
-/* line 52, ../sass/partials/_base.scss */
+/* line 56, ../sass/partials/_base.scss */
 .mb0 {
   margin-bottom: 0;
 }
 
-/* line 56, ../sass/partials/_base.scss */
+/* line 60, ../sass/partials/_base.scss */
 .pt50 {
   padding-top: 50px;
 }
 
-/* line 60, ../sass/partials/_base.scss */
+/* line 64, ../sass/partials/_base.scss */
 .pt25i {
   padding-top: 25px !important;
 }
@@ -523,7 +528,7 @@ html, body {
 /**
  * Typography
  */
-/* line 68, ../sass/partials/_base.scss */
+/* line 72, ../sass/partials/_base.scss */
 html, body {
   font-family: 'Roboto', sans-serif;
 }
@@ -531,7 +536,7 @@ html, body {
 /**
  * Other
  */
-/* line 76, ../sass/partials/_base.scss */
+/* line 80, ../sass/partials/_base.scss */
 .smooth-box-shadow {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
@@ -546,23 +551,28 @@ html, body {
   display: inline-block;
 }
 
+/* line 17, ../sass/styles.scss */
+.alert-close-icon-container {
+  padding: 24px 24px 0 0 !important;
+}
+
 /**
  * Forms
  */
-/* line 21, ../sass/styles.scss */
+/* line 25, ../sass/styles.scss */
 .input-field input[type=text]:focus + label,
 .input-field input[type=email]:focus + label {
   color: #F57C00 !important;
 }
 
-/* line 26, ../sass/styles.scss */
+/* line 30, ../sass/styles.scss */
 .input-field input[type=text]:focus,
 .input-field input[type=email]:focus {
   border-bottom: 1px solid #F57C00 !important;
   box-shadow: 0 1px 0 0 #F57C00 !important;
 }
 
-/* line 32, ../sass/styles.scss */
+/* line 36, ../sass/styles.scss */
 .input-field input[type=text].invalid:focus,
 .input-field input[type=email].invalid:focus {
   border-bottom: 1px solid #F44336 !important;
@@ -572,17 +582,31 @@ html, body {
 /**
  * Header
  */
-/* line 42, ../sass/styles.scss */
+/* line 46, ../sass/styles.scss */
 header {
   padding: 15px 0;
 }
 
-/* line 46, ../sass/styles.scss */
+/* line 50, ../sass/styles.scss */
 .header-text-size {
   font-size: 24px;
 }
 
-/* line 50, ../sass/styles.scss */
+/* line 54, ../sass/styles.scss */
 .header-line-height {
   line-height: 1.5;
+}
+
+/**
+ * Create playlist page
+ */
+/* line 62, ../sass/styles.scss */
+.song-container {
+  padding: 15px;
+  margin-top: 15px;
+}
+
+/* line 67, ../sass/styles.scss */
+.song-container:first-child {
+  margin-top: 0;
 }

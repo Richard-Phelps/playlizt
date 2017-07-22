@@ -21,11 +21,11 @@ html, body {
  * Colours
  */
 
-.orange-bg {
+.main-bg {
     background-color: $orange;
 }
 
-.orange-bg-hover:hover {
+.main-bg-hover:hover {
     background-color: $light-orange;
 }
 
@@ -33,12 +33,16 @@ html, body {
     background-color: $light-grey;
 }
 
+.white-bg {
+    background-color: $white;
+}
+
 .white-text {
     color: $white;
 }
 
-.orange-text-important {
-    color: $orange !important;
+.main-text {
+    color: $orange;
 }
 
 /**
