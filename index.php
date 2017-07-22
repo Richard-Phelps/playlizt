@@ -2,6 +2,8 @@
 
 <?php require_once('inc/header.php'); ?>
 
+<?php $errors->add_error('test'); ?>
+
 <div class="pt50">
 
     <div class="container">

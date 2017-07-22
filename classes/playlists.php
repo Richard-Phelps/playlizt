@@ -1,5 +1,5 @@
 <?php
-    class playlists
+    class playlists extends validation
     {
 
         /**
@@ -17,13 +17,15 @@
 
         /**
          * Method to generate unique string for the playlist
+         *
+         * @return $string
          */
 
         public function generate_unique_string()
         {
 
             $unique_string = md5(uniqid($this->email, true));
-            
+
             return $unique_string;
 
         }

@@ -8,8 +8,10 @@
     });
 
     include('functions.php');
+    session_start();
 
     $config     = new config();
     $db         = $config->db_connect();
     $page_title = get_page_title($_SERVER['REQUEST_URI']);
+    $errors     = new errors();
 ?>

@@ -20,8 +20,10 @@
 
         /**
          * Establish a connection to the database
+         *
+         * @return object
          */
-         
+
         public function db_connect()
         {
 

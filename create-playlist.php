@@ -3,7 +3,9 @@
 <?php require_once('inc/header.php'); ?>
 
 <?php
-    $email = $_POST['email'];
+    $validation  = new validation();
+    $posted_data = $validation->sanitise($_POST);
+    extract($posted_data);
 ?>
 
 <?php require_once('inc/footer.php'); ?>
