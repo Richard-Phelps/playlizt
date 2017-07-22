@@ -1,5 +1,66 @@
+/**
+ * General
+ */
+
 * {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+.pointer-cursor {
+    cursor: pointer;
+}
+
+/**
+ * Colours
+ */
+
+.orange-bg {
+    background-color: $orange;
+}
+
+.light-grey-bg {
+    background-color: $light-grey;
+}
+
+.white-text {
+    color: $white;
+}
+
+.orange-text {
+    color: $orange;
+}
+
+/**
+ * Margin and padding
+ */
+
+.margin0 {
+    margin: 0;
+}
+
+.mb0 {
+    margin-bottom: 0;
+}
+
+/**
+ * Typography
+ */
+
+html, body {
+    font-family: 'Roboto', sans-serif;
+}
+
+/**
+ * Other
+ */
+
+.smooth-box-shadow {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
 }

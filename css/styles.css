@@ -448,9 +448,115 @@ th {
   padding: 0;
 }
 
-/* line 1, ../sass/partials/_base.scss */
+/**
+ * General
+ */
+/* line 5, ../sass/partials/_base.scss */
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+}
+
+/* line 11, ../sass/partials/_base.scss */
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+/* line 16, ../sass/partials/_base.scss */
+.pointer-cursor {
+  cursor: pointer;
+}
+
+/**
+ * Colours
+ */
+/* line 24, ../sass/partials/_base.scss */
+.orange-bg {
+  background-color: #F57C00;
+}
+
+/* line 28, ../sass/partials/_base.scss */
+.light-grey-bg {
+  background-color: #FAFAFA;
+}
+
+/* line 32, ../sass/partials/_base.scss */
+.white-text {
+  color: #FFFFFF;
+}
+
+/* line 36, ../sass/partials/_base.scss */
+.orange-text {
+  color: #F57C00;
+}
+
+/**
+ * Margin and padding
+ */
+/* line 44, ../sass/partials/_base.scss */
+.margin0 {
+  margin: 0;
+}
+
+/* line 48, ../sass/partials/_base.scss */
+.mb0 {
+  margin-bottom: 0;
+}
+
+/**
+ * Typography
+ */
+/* line 56, ../sass/partials/_base.scss */
+html, body {
+  font-family: 'Roboto', sans-serif;
+}
+
+/**
+ * Other
+ */
+/* line 64, ../sass/partials/_base.scss */
+.smooth-box-shadow {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+/**
+ * Site wide
+ */
+/* line 11, ../sass/styles.scss */
+.page-wrapper {
+  padding-top: 50px;
+}
+
+/**
+ * Forms
+ */
+/* line 19, ../sass/styles.scss */
+.input-field input[type=text]:focus + label {
+  color: #F57C00 !important;
+}
+
+/* line 23, ../sass/styles.scss */
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #F57C00 !important;
+  box-shadow: 0 1px 0 0 #F57C00 !important;
+}
+
+/**
+ * Header
+ */
+/* line 32, ../sass/styles.scss */
+header {
+  padding: 15px 0;
+}
+
+/* line 36, ../sass/styles.scss */
+.header-text-size {
+  font-size: 24px;
+}
+
+/* line 40, ../sass/styles.scss */
+.header-line-height {
+  line-height: 1.5;
 }
