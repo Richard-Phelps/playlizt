@@ -493,8 +493,8 @@ html, body {
 }
 
 /* line 40, ../sass/partials/_base.scss */
-.orange-text {
-  color: #F57C00;
+.orange-text-important {
+  color: #F57C00 !important;
 }
 
 /**
@@ -537,33 +537,52 @@ html, body {
 }
 
 /**
- * Forms
+ * Site wide
  */
 /* line 11, ../sass/styles.scss */
-.input-field input[type=text]:focus + label {
+.section-title {
+  padding-bottom: 10px;
+  border-bottom: 2px solid #F57C00;
+  display: inline-block;
+}
+
+/**
+ * Forms
+ */
+/* line 21, ../sass/styles.scss */
+.input-field input[type=text]:focus + label,
+.input-field input[type=email]:focus + label {
   color: #F57C00 !important;
 }
 
-/* line 15, ../sass/styles.scss */
-.input-field input[type=text]:focus {
+/* line 26, ../sass/styles.scss */
+.input-field input[type=text]:focus,
+.input-field input[type=email]:focus {
   border-bottom: 1px solid #F57C00 !important;
   box-shadow: 0 1px 0 0 #F57C00 !important;
+}
+
+/* line 32, ../sass/styles.scss */
+.input-field input[type=text].invalid:focus,
+.input-field input[type=email].invalid:focus {
+  border-bottom: 1px solid #F44336 !important;
+  box-shadow: 0 1px 0 0 #F44336 !important;
 }
 
 /**
  * Header
  */
-/* line 24, ../sass/styles.scss */
+/* line 42, ../sass/styles.scss */
 header {
   padding: 15px 0;
 }
 
-/* line 28, ../sass/styles.scss */
+/* line 46, ../sass/styles.scss */
 .header-text-size {
   font-size: 24px;
 }
 
-/* line 32, ../sass/styles.scss */
+/* line 50, ../sass/styles.scss */
 .header-line-height {
   line-height: 1.5;
 }

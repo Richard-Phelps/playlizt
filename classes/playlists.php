@@ -23,6 +23,8 @@
         {
 
             $unique_string = md5(uniqid($this->email, true));
+            
+            return $unique_string;
 
         }
 

@@ -5,16 +5,34 @@
 @import "partials/base";
 
 /**
+ * Site wide
+ */
+
+.section-title {
+    padding-bottom: 10px;
+    border-bottom: 2px solid $orange;
+    display: inline-block;
+}
+
+/**
  * Forms
  */
 
-.input-field input[type=text]:focus + label {
+.input-field input[type=text]:focus + label,
+.input-field input[type=email]:focus + label {
     color: $orange !important;
 }
 
-.input-field input[type=text]:focus {
+.input-field input[type=text]:focus,
+.input-field input[type=email]:focus {
     border-bottom: 1px solid $orange !important;
     box-shadow: 0 1px 0 0 $orange !important;
+}
+
+.input-field input[type=text].invalid:focus,
+.input-field input[type=email].invalid:focus {
+    border-bottom: 1px solid $materialize-invalid-red !important;
+    box-shadow: 0 1px 0 0 $materialize-invalid-red !important;
 }
 
 /**

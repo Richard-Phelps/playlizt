@@ -3,7 +3,7 @@
 <?php require_once('inc/header.php'); ?>
 
 <?php
-    
+    $email = $_POST['email'];
 ?>
 
 <?php require_once('inc/footer.php'); ?>
