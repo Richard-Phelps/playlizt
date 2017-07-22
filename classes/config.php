@@ -5,6 +5,7 @@
         /**
          * Constructor
          */
+
         public function __construct()
         {
 
@@ -20,6 +21,7 @@
         /**
          * Establish a connection to the database
          */
+         
         public function db_connect()
         {
 

@@ -11,8 +11,8 @@
             <form action="<?php echo $config->site_url; ?>/create-playlist/" method="POST">
 
                 <div class="input-field col m10">
-                    <input name="playlist_name" id="playlist_name" type="text" autocomplete="off">
-                    <label for="playlist_name" class="orange-text-focus-important">Name Your Playlist</label>
+                    <input name="playlist_name" id="playlist_name" type="text" class="validate invalid" autocomplete="off">
+                    <label for="playlist_name" class="orange-text-focus-important" data-error="Please enter a name for your playlist">Name Your Playlist</label>
                 </div>
 
                 <div class="col m2 pt25i right-align">

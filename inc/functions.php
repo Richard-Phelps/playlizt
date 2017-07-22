@@ -1,6 +1,8 @@
 <?php
     /**
      * This function will return the page title based on the last path of the url
+     *
+     * @param $url: This is the url of the current page
      */
 
     function get_page_title($url)
