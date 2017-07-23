@@ -8,21 +8,17 @@
     extract($posted_data);
 
     $playlists = new playlists($playlist_name, $playlist_email);
-    $playlists->create_playlist();
+    $id = $playlists->create_playlist();
 ?>
 
 <div class="pt50">
 
     <div class="container">
 
-        <div class="row">
+        <div class="row mb0">
 
             <div class="col s12">
                 <h5 class="section-title main-text">Add Song to "<?php echo $playlist_name; ?>"</h5>
-
-                <br><br>
-
-                <h4>NEED TO SETUP THE FUNCTIONALITY TO ADD THE PLAYLIST TO THE DATABASE USING THE create_playlist METHOD IN THE playlists CLASS</h4>
             </div>
 
             <div class="input-field col s12">
@@ -32,7 +28,7 @@
 
         </div>
 
-        <div class="row">
+        <div class="row mb0 pt50">
 
             <div class="col s12">
                 <h5 class="section-title main-text">Songs Added to "<?php echo $playlist_name; ?>"</h5>

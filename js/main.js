@@ -1,14 +1,3 @@
-/**
- * This function will validate email addresses
- */
-
-function is_valid_email(email) {
-
-    var email_regex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-    return email_regex.test(email);
-
-}
-
 (function ($) {
 
     /**
@@ -59,4 +48,49 @@ function is_valid_email(email) {
         $('#alert-box').fadeOut('slow');
     });
 
+    /**
+     * This is the code to search youtube for videos
+     */
+
+    $('#search_song').keyup(function () {
+
+        var search_term = $(this).val();
+
+        // Prepare the request
+        var request     = gapi.client.youtube.search.list({
+            part: 'snippet',
+            type: 'video',
+            q: encodeURIComponent(search_term).replace(/%20/g, '+'),
+            maxResults: 20
+        });
+
+        // Execute the request
+        request.execute(function (response) {
+            console.log(response);
+        });
+
+    });
+
 })(jQuery);
+
+/**
+ * This function will validate email addresses
+ */
+
+function is_valid_email(email) {
+
+    var email_regex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    return email_regex.test(email);
+
+}
+
+/**
+ * This will initialise the google api
+ */
+
+function init() {
+    gapi.client.setApiKey('AIzaSyDZqUDzM5Iz5H4w7inMMz0Ght_hlxaheS4');
+    gapi.client.load('youtube', 'v3', function () {
+        console.log('YouTube API ready');
+    });
+}

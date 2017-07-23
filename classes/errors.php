@@ -10,7 +10,7 @@
         {
 
             $this->session_has_errors = $this->session_has_errors();
-            $this->errors             = $this->get_errors();
+            $this->errors             = [];
 
         }
 
@@ -23,10 +23,8 @@
         public function session_has_errors()
         {
 
-            $errors_cookie = $_SESSION['errors'];
-
             // Check if the errors cookie is set
-            if (isset($errors_cookie) && !empty($errors_cookie)) {
+            if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
                 return true;
             } else {
                 return false;
@@ -57,6 +55,7 @@
         public function set_errors()
         {
 
+            // Encode the array so it can be stored in a cookie
             $_SESSION['errors'] = json_encode($this->errors);
 
         }

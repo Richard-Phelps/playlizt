@@ -42,6 +42,8 @@
 
         /**
          * This method will create the playlist
+         *
+         * @return int
          */
 
         public function create_playlist()
@@ -62,15 +64,47 @@
                 $temp_errors[] = 'The playlist name must not be empty';
             }
 
+            // If there are no errors
             if (count($temp_errors) > 0) {
 
                 foreach ($temp_errors as $error) {
                     $errors->add_error($error);
                 }
 
+                // Redirect to the homepage as the errors are stored in the session
                 header('Location: ' . $config->site_url);
 
                 exit;
+
+            } else {
+
+                // Insert the playlist into the database
+                $create_playlist_sql = "INSERT INTO
+                                        playlists (unique_string, user_associated, user, email, created)
+                                        VALUES (:us, '0', 0, :e, NOW())";
+
+                $create_playlist     = $this->db->prepare($create_playlist_sql);
+                $create_playlist->bindParam(':us', $this->unique_string);
+                $create_playlist->bindParam(':e', $this->email);
+
+                try {
+
+                    $create_playlist->execute();
+
+                    $get_playlist_id = $this->db->query("SELECT id FROM playlists WHERE unique_string = '$this->unique_string'");
+
+                    return $get_playlist_id->fetchObject()->id;
+
+                } catch(PDOException $e) {
+
+                    $errors->add_error('There was an error creating the playlist, please try again later');
+
+                    // Redirect to the homepage as the error is stored in the session
+                    header('Location: ' . $config->site_url);
+
+                    exit;
+
+                }
 
             }
 
