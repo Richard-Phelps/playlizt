@@ -610,3 +610,25 @@ header {
 .song-container:first-child {
   margin-top: 0;
 }
+
+/* line 71, ../sass/styles.scss */
+.create-playlist-search-results {
+  max-height: 300px;
+}
+
+/* line 75, ../sass/styles.scss */
+.create-playlist-search-results > li {
+  padding: 15px;
+}
+
+/* line 79, ../sass/styles.scss */
+.create-playlist-search-results li img,
+.create-playlist-search-results li span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* line 85, ../sass/styles.scss */
+.create-playlist-search-results li img {
+  width: auto;
+}

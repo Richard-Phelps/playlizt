@@ -1,3 +1,25 @@
+/**
+ * This function will validate email addresses
+ */
+
+function is_valid_email(email) {
+
+    var email_regex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    return email_regex.test(email);
+
+}
+
+// /**
+//  * This will initialise the google api
+//  */
+//
+// function init() {
+//     gapi.client.setApiKey('AIzaSyDZqUDzM5Iz5H4w7inMMz0Ght_hlxaheS4');
+//     gapi.client.load('youtube', 'v3', function () {
+//         console.log('YouTube API ready');
+//     });
+// }
+
 (function ($) {
 
     /**
@@ -52,45 +74,52 @@
      * This is the code to search youtube for videos
      */
 
+    var typing_timer;
+    var done_typing_interval = 500;
+
     $('#search_song').keyup(function () {
 
-        var search_term = $(this).val();
+        clearTimeout(typing_timer);
 
-        // Prepare the request
-        var request     = gapi.client.youtube.search.list({
-            part: 'snippet',
-            type: 'video',
-            q: encodeURIComponent(search_term).replace(/%20/g, '+'),
-            maxResults: 20
-        });
+        typing_timer = setTimeout(function () {
 
-        // Execute the request
-        request.execute(function (response) {
-            console.log(response);
-        });
+            var search_term = $('#search_song').val();
+            $.get('https://www.googleapis.com/youtube/v3/search', {key: 'AIzaSyDZqUDzM5Iz5H4w7inMMz0Ght_hlxaheS4', part: 'snippet', type: 'video', q: search_term, maxResults: 20}, function (response) {
 
+                if (response.items) {
+
+                    $('.create-playlist-search-results').html('');
+
+                    $.each(response.items, function (i, item) {
+
+                        var video_id            = item.id.videoId;
+                        var video_title         = item.snippet.title;
+                        var video_thumbnail     = item.snippet.thumbnails.default.url;
+                        var autocomplete_result = '<li onclick="selected_video(\'' + video_id + '\')"><img src="' + video_thumbnail + '" alt="' + video_title + '" /><span>' + video_title + '</span></li>';
+
+                        $('.create-playlist-search-results').append(autocomplete_result);
+
+                    });
+                }
+
+            });
+
+        }, done_typing_interval);
+
+    });
+
+    $('#search_song').keydown(function () {
+        clearTimeout(typing_timer);
     });
 
 })(jQuery);
 
 /**
- * This function will validate email addresses
+ * This function will post to a script which will save the video
+ *
+ * @param video_id: The id of the video to save
  */
 
-function is_valid_email(email) {
-
-    var email_regex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-    return email_regex.test(email);
-
-}
-
-/**
- * This will initialise the google api
- */
-
-function init() {
-    gapi.client.setApiKey('AIzaSyDZqUDzM5Iz5H4w7inMMz0Ght_hlxaheS4');
-    gapi.client.load('youtube', 'v3', function () {
-        console.log('YouTube API ready');
-    });
+function selected_video(video_id) {
+    var $ = jQuery;
 }

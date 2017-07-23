@@ -18,12 +18,16 @@
         <div class="row mb0">
 
             <div class="col s12">
-                <h5 class="section-title main-text">Add Song to "<?php echo $playlist_name; ?>"</h5>
+                <h5 class="section-title main-text">Add Song to "<?php echo $playlist_name; ?>" Playlist</h5>
             </div>
 
             <div class="input-field col s12">
-                <input name="search_song" id="search_song" type="text" autocomplete="off">
+                <input id="search_song" type="text" autocomplete="off">
                 <label for="search_song" class="main-text-focus-important">Search Song</label>
+
+                <ul class="autocomplete-content create-playlist-search-results dropdown-content">
+
+                </ul>
             </div>
 
         </div>
@@ -31,7 +35,7 @@
         <div class="row mb0 pt50">
 
             <div class="col s12">
-                <h5 class="section-title main-text">Songs Added to "<?php echo $playlist_name; ?>"</h5>
+                <h5 class="section-title main-text">Songs Added to "<?php echo $playlist_name; ?>" Playlist</h5>
 
                 <br><br>
 

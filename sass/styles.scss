@@ -67,3 +67,21 @@ header {
 .song-container:first-child {
     margin-top: 0;
 }
+
+.create-playlist-search-results {
+    max-height: 300px;
+}
+
+.create-playlist-search-results > li {
+    padding: 15px;
+}
+
+.create-playlist-search-results li img,
+.create-playlist-search-results li span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.create-playlist-search-results li img {
+    width: auto;
+}
