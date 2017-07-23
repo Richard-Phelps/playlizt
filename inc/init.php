@@ -4,7 +4,9 @@
     error_reporting(E_ALL);
 
     spl_autoload_register(function ($class) {
-        require_once('classes/' . $class . '.php');
+        if ($class != 'yt_downloader') {
+            require_once(str_replace('/inc', '', getcwd()) . '/classes/' . $class . '.php');
+        }
     });
 
     include('functions.php');

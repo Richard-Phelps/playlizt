@@ -95,6 +95,7 @@ function is_valid_email(email) {
                         var video_id            = item.id.videoId;
                         var video_title         = item.snippet.title;
                         var video_thumbnail     = item.snippet.thumbnails.default.url;
+                        console.log(response);
                         var autocomplete_result = '<li onclick="selected_video(\'' + video_id + '\')"><img src="' + video_thumbnail + '" alt="' + video_title + '" /><span>' + video_title + '</span></li>';
 
                         $('.create-playlist-search-results').append(autocomplete_result);
