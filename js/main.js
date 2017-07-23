@@ -9,24 +9,13 @@ function is_valid_email(email) {
 
 }
 
-// /**
-//  * This will initialise the google api
-//  */
-//
-// function init() {
-//     gapi.client.setApiKey('AIzaSyDZqUDzM5Iz5H4w7inMMz0Ght_hlxaheS4');
-//     gapi.client.load('youtube', 'v3', function () {
-//         console.log('YouTube API ready');
-//     });
-// }
-
 (function ($) {
 
     /**
      * Functionality to show errors when the create playlist form has empty fields
      */
 
-    $('#start-playlist').submit(function () {
+    $('#start-playlist').on('submit', function () {
 
         var playlist_name  = $('#playlist_name');
         var playlist_email = $('#playlist_email');
@@ -66,7 +55,7 @@ function is_valid_email(email) {
      * This will fade the alert box out
      */
 
-    $('#alert-close').click(function () {
+    $('#alert-close').on('click', function () {
         $('#alert-box').fadeOut('slow');
     });
 
@@ -77,7 +66,7 @@ function is_valid_email(email) {
     var typing_timer;
     var done_typing_interval = 500;
 
-    $('#search_song').keyup(function () {
+    $('#search_song').on('keyup', function () {
 
         clearTimeout(typing_timer);
 
@@ -88,15 +77,14 @@ function is_valid_email(email) {
 
                 if (response.items) {
 
-                    $('.create-playlist-search-results').html('');
+                    $('.create-playlist-search-results').show().html('');
 
                     $.each(response.items, function (i, item) {
 
                         var video_id            = item.id.videoId;
                         var video_title         = item.snippet.title;
                         var video_thumbnail     = item.snippet.thumbnails.default.url;
-                        console.log(response);
-                        var autocomplete_result = '<li onclick="selected_video(\'' + video_id + '\')"><img src="' + video_thumbnail + '" alt="' + video_title + '" /><span>' + video_title + '</span></li>';
+                        var autocomplete_result = '<li onclick="selected_video(\'' + video_id + '\')" yt-id=' + video_id + '><img src="' + video_thumbnail + '" alt="' + video_title + '" /><span class="main-text-important">' + video_title + '</span></li>';
 
                         $('.create-playlist-search-results').append(autocomplete_result);
 
@@ -109,18 +97,42 @@ function is_valid_email(email) {
 
     });
 
-    $('#search_song').keydown(function () {
+    $('#search_song').on('keydown', function () {
         clearTimeout(typing_timer);
+    });
+
+    /**
+     * This will hide the autosuggesst box when the page is clicked anywhere outside of the autosuggest box
+     */
+
+    $(document).on('click', function () {
+        $('.create-playlist-search-results').hide();
+    });
+
+    $('.create-playlist-search-results').on('click', function (e) {
+        e.stopPropagation();
+        return false;
     });
 
 })(jQuery);
 
 /**
- * This function will post to a script which will save the video
+ * This function will post to a script which will save the video details
  *
  * @param video_id: The id of the video to save
  */
 
 function selected_video(video_id) {
-    var $ = jQuery;
+
+    var $           = jQuery;
+    var video_title = $('li[yt-id=' + video_id + ']').html();
+
+    // Show preview of the video
+    $('.selected-view-preview-container').show();
+    $('#selected-video-preview').html('<iframe src="https://www.youtube.com/embed/' + video_id + '?vq=small" style="selected-video-preview"></iframe>');
+    $('.create-playlist-search-results').hide();
+
+    // Send data to file to save in database
+    
+
 }

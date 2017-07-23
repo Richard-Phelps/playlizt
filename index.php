@@ -62,7 +62,7 @@
                 </div>
 
                 <div class="col s12 m2 pt25i right-align">
-                    <button class="btn waves-effect waves-light main-bg main-bg-hover" type="submit" name="playlist_go">Go
+                    <button class="btn waves-effect waves-light main-bg main-bg-hover main-bg-active" type="submit" name="playlist_go">Go
                         <i class="material-icons right">keyboard_arrow_right</i>
                     </button>
                 </div>

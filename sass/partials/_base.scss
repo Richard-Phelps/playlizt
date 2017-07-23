@@ -29,6 +29,10 @@ html, body {
     background-color: $light-orange;
 }
 
+.main-bg-active:active {
+    background-color: $light-orange;
+}
+
 .light-grey-bg {
     background-color: $light-grey;
 }
@@ -45,6 +49,10 @@ html, body {
     color: $orange;
 }
 
+.main-text-important {
+    color: $orange !important;
+}
+
 /**
  * Margin and padding
  */
@@ -53,12 +61,28 @@ html, body {
     margin: 0;
 }
 
+.mt0 {
+    margin-top: 0;
+}
+
 .mb0 {
     margin-bottom: 0;
 }
 
+.p0 {
+    padding: 0;
+}
+
+.p0i {
+    padding: 0 !important;
+}
+
 .pt50 {
     padding-top: 50px;
+}
+
+.pt50i {
+    padding-top: 50px !important;
 }
 
 .pt25i {
