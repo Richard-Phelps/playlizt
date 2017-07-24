@@ -46,9 +46,9 @@
 
                 return $connection;
 
-            } catch (PDOException $error) {
+            } catch (PDOException $e) {
 
-                echo 'Connection failed: ' . $error->getMessage();
+                echo 'Connection failed: ' . $e->getMessage();
 
             }
 

@@ -62,13 +62,27 @@ header {
  * Create playlist page
  */
 
+#playlist_id {
+    display: none;
+}
+
 .song-container {
     padding: 15px;
     margin-top: 15px;
 }
 
-.song-container:first-child {
-    margin-top: 0;
+.song-container img,
+.song-container span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.song-container img {
+    height: 40px;
+}
+
+.song-container span {
+    padding: 14px 16px;
 }
 
 .create-playlist-search-results {
@@ -89,7 +103,7 @@ header {
     width: auto;
 }
 
-.selected-view-preview-container {
+.selected-video-preview-container {
     display: none;
 }
 

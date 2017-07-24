@@ -6,7 +6,7 @@
          * Constructor
          */
 
-        public function __construct($playlist_name, $email)
+        public function __construct($playlist_name = '', $email = '')
         {
 
             global $db;
@@ -41,6 +41,27 @@
         }
 
         /**
+         * This method will get the unique string for the playlist
+         *
+         * @param  $id: The playlist id to get the unique string for
+         *
+         * @return string
+         */
+
+        public function get_unique_string($id)
+        {
+
+            $unique_string = $this->db->query("
+                SELECT unique_string
+                FROM playlists
+                WHERE id = '$id'
+            ");
+
+            return $unique_string->fetchObject()->unique_string;
+
+        }
+
+        /**
          * This method will create the playlist
          *
          * @return int
@@ -49,8 +70,7 @@
         public function create_playlist()
         {
 
-            global $config;
-            global $errors;
+            global $errors, $config;
 
             $temp_errors = [];
 
@@ -80,11 +100,12 @@
 
                 // Insert the playlist into the database
                 $create_playlist_sql = "INSERT INTO
-                                        playlists (unique_string, user_associated, user, email, created)
-                                        VALUES (:us, '0', 0, :e, NOW())";
-
+                                        playlists (unique_string, name, user_associated, user, email, created)
+                                        VALUES (:us, :n, '0', 0, :e, NOW())";
                 $create_playlist     = $this->db->prepare($create_playlist_sql);
+
                 $create_playlist->bindParam(':us', $this->unique_string);
+                $create_playlist->bindParam(':n', $this->name);
                 $create_playlist->bindParam(':e', $this->email);
 
                 try {
@@ -95,7 +116,7 @@
 
                     return $get_playlist_id->fetchObject()->id;
 
-                } catch(PDOException $e) {
+                } catch (PDOException $e) {
 
                     $errors->add_error('There was an error creating the playlist, please try again later');
 
@@ -105,6 +126,82 @@
                     exit;
 
                 }
+
+            }
+
+        }
+
+        /**
+         * This method will add a video to the playlist
+         *
+         * @param $playlist_id: The id of the playlist to add the video to
+         * @param $video_id   : The youtube video id
+         * @param $start      : How many seconds into the video it should start playing
+         */
+
+        public function add_video($playlist_id, $video_id, $start)
+        {
+
+            global $errors, $config;
+
+            // Make sre that the playlist id is not empty and is not 0
+            if (!empty($playlist_id) && $playlist_id != 0) {
+
+                // Make sure each parameter is set
+                if (isset($playlist_id) && isset($video_id) && isset($start)) {
+
+                    // Ensure the video hasn't already been added to the playlist
+                    $check_video = $this->db->query("
+                        SELECT COUNT(*) AS count
+                        FROM playlist_videos
+                        WHERE playlist_id = '$playlist_id'
+                        AND video_id = '$video_id'
+                    ");
+
+                    if ($check_video->fetchObject()->count == 0) {
+
+                        // Add the video to the playlist_videos table
+                        $add_video_sql = "INSERT INTO playlist_videos (playlist_id, video_id, start, added) VALUES (:pid, :vid, :s, NOW())";
+                        $add_video     = $this->db->prepare($add_video_sql);
+
+                        $add_video->bindParam(':pid', $playlist_id);
+                        $add_video->bindParam(':vid', $video_id);
+                        $add_video->bindParam(':s', $start);
+
+                        try {
+
+                            $add_video->execute();
+                            echo 'success';
+
+                        } catch (PDOException $e) {
+
+                            $errors->add('Sorry but something went wrong when adding the video to the playlist, please try again later');
+                            header('Location: ' . $config->site_url . '/create-playlist/');
+                            exit;
+
+                        }
+
+                    } else {
+
+                        $errors->add('Sorry but this song has already been added to the playlist');
+                        header('Location: ' . $config->site_url . '/create-playlist/');
+                        exit;
+
+                    }
+
+                } else {
+
+                    $errors->add('Sorry but some parameters are empty');
+                    header('Location: ' . $config->site_url . '/create-playlist/');
+                    exit;
+
+                }
+
+            } else {
+
+                $errors->add('Sorry but a playlist has to have been created to add this video');
+                header('Location: ' . $config->site_url . '/create-playlist/');
+                exit;
 
             }
 

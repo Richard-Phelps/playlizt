@@ -7,9 +7,12 @@
     $posted_data = $validation->sanitise($_POST);
     extract($posted_data);
 
-    $playlists = new playlists($playlist_name, $playlist_email);
-    $id = $playlists->create_playlist();
+    $playlists     = new playlists($playlist_name, $playlist_email);
+    $id            = $playlists->create_playlist();
+    $unique_string = $playlists->get_unique_string($id);
 ?>
+
+<div id="playlist_id"><?php echo $id; ?></div>
 
 <div class="pt50">
 
@@ -28,7 +31,9 @@
                 <ul class="autocomplete-content create-playlist-search-results dropdown-content"></ul>
             </div>
 
-            <div class="col s12 p0i pt50i selected-view-preview-container">
+            <?php require_once('inc/errors-block.php'); ?>
+
+            <div class="col s12 p0i pt50i selected-video-preview-container">
 
                 <div class="col m8 align-center">
                     <div id="selected-video-preview"></div>
@@ -45,7 +50,7 @@
                     </div>
 
 
-                    <button class="btn waves-effect waves-light main-bg main-bg-hover main-bg-active" type="submit" name="save_options">Add to Playlist
+                    <button class="btn waves-effect waves-light main-bg main-bg-hover main-bg-focus" type="submit" id="add_video">Add to Playlist
                         <i class="material-icons right">add</i>
                     </button>
                 </div>
@@ -58,33 +63,19 @@
 
             <div class="col s12">
                 <h5 class="section-title main-text">Songs Added to "<?php echo $playlist_name; ?>" Playlist</h5>
-
-                <br><br>
-
-                <h4>NEED TO MAKE THIS DYNAMIC WHEN THE FUNCTIONALITY FOR SAVINGS SONGS IS DONE</h4>
             </div>
 
-            <div class="col s12">
+            <div class="col s12 pb50i videos-added-container">
 
-                <div class="song-container smooth-box-shadow white-bg">
-                    <p class="margin0 main-text">STORMZY [@STORMZY1] - BIG FOR YOUR BOOTS</p>
-                </div>
-
-                <div class="song-container smooth-box-shadow white-bg">
-                    <p class="margin0 main-text">STORMZY [@STORMZY1] - SHUT UP</p>
-                </div>
-
-                <div class="song-container smooth-box-shadow white-bg">
-                    <p class="margin0 main-text">STORMZY [@STORMZY1] - KNOW ME FROM</p>
-                </div>
-
-                <div class="song-container smooth-box-shadow white-bg">
-                    <p class="margin0 main-text">STORMZY [@STORMZY1] - SCARY</p>
-                </div>
+                <p class="no-videos-added">No videos have been added to the playlist yet.</p>
 
             </div>
 
         </div>
+
+        <a href="<?php echo $config->site_url; ?>/p/?id=<?php echo $unique_string; ?>" class="btn waves-effect waves-light main-bg main-bg-hover main-bg-focus mb50 disabled" id="finish-creating-playlist-btn">Finish Creating Playlist
+            <i class="material-icons right">keyboard_arrow_right</i>
+        </a>
 
     </div><!-- .container -->
 

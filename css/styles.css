@@ -483,7 +483,7 @@ html, body {
 }
 
 /* line 32, ../sass/partials/_base.scss */
-.main-bg-active:active {
+.main-bg-focus:focus {
   background-color: #FF9800;
 }
 
@@ -531,34 +531,44 @@ html, body {
 }
 
 /* line 72, ../sass/partials/_base.scss */
+.mb50 {
+  margin-bottom: 50px;
+}
+
+/* line 76, ../sass/partials/_base.scss */
 .p0 {
   padding: 0;
 }
 
-/* line 76, ../sass/partials/_base.scss */
+/* line 80, ../sass/partials/_base.scss */
 .p0i {
   padding: 0 !important;
 }
 
-/* line 80, ../sass/partials/_base.scss */
+/* line 84, ../sass/partials/_base.scss */
 .pt50 {
   padding-top: 50px;
 }
 
-/* line 84, ../sass/partials/_base.scss */
+/* line 88, ../sass/partials/_base.scss */
 .pt50i {
   padding-top: 50px !important;
 }
 
-/* line 88, ../sass/partials/_base.scss */
+/* line 92, ../sass/partials/_base.scss */
 .pt25i {
   padding-top: 25px !important;
+}
+
+/* line 96, ../sass/partials/_base.scss */
+.pb50i {
+  padding-bottom: 50px !important;
 }
 
 /**
  * Typography
  */
-/* line 96, ../sass/partials/_base.scss */
+/* line 104, ../sass/partials/_base.scss */
 html, body {
   font-family: 'Roboto', sans-serif;
 }
@@ -566,7 +576,7 @@ html, body {
 /**
  * Other
  */
-/* line 104, ../sass/partials/_base.scss */
+/* line 112, ../sass/partials/_base.scss */
 .smooth-box-shadow {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
@@ -634,44 +644,61 @@ header {
  * Create playlist page
  */
 /* line 65, ../sass/styles.scss */
+#playlist_id {
+  display: none;
+}
+
+/* line 69, ../sass/styles.scss */
 .song-container {
   padding: 15px;
   margin-top: 15px;
 }
 
-/* line 70, ../sass/styles.scss */
-.song-container:first-child {
-  margin-top: 0;
+/* line 74, ../sass/styles.scss */
+.song-container img,
+.song-container span {
+  display: inline-block;
+  vertical-align: middle;
 }
 
-/* line 74, ../sass/styles.scss */
+/* line 80, ../sass/styles.scss */
+.song-container img {
+  height: 40px;
+}
+
+/* line 84, ../sass/styles.scss */
+.song-container span {
+  padding: 14px 16px;
+}
+
+/* line 88, ../sass/styles.scss */
 .create-playlist-search-results {
   max-height: 300px;
 }
 
-/* line 78, ../sass/styles.scss */
+/* line 92, ../sass/styles.scss */
 .create-playlist-search-results > li {
   padding: 15px;
 }
 
-/* line 82, ../sass/styles.scss */
+/* line 96, ../sass/styles.scss */
 .create-playlist-search-results li img,
 .create-playlist-search-results li span {
   display: inline-block;
   vertical-align: middle;
 }
 
-/* line 88, ../sass/styles.scss */
+/* line 102, ../sass/styles.scss */
 .create-playlist-search-results li img {
   width: auto;
 }
 
-/* line 92, ../sass/styles.scss */
-.selected-view-preview-container {
+/* line 106, ../sass/styles.scss */
+.selected-video-preview-container {
   display: none;
 }
 
-/* line 96, ../sass/styles.scss */
+/* line 110, ../sass/styles.scss */
 #selected-video-preview iframe {
   width: 100%;
   height: 300px;

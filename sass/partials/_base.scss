@@ -29,7 +29,7 @@ html, body {
     background-color: $light-orange;
 }
 
-.main-bg-active:active {
+.main-bg-focus:focus {
     background-color: $light-orange;
 }
 
@@ -69,6 +69,10 @@ html, body {
     margin-bottom: 0;
 }
 
+.mb50 {
+    margin-bottom: 50px;
+}
+
 .p0 {
     padding: 0;
 }
@@ -87,6 +91,10 @@ html, body {
 
 .pt25i {
     padding-top: 25px !important;
+}
+
+.pb50i {
+    padding-bottom: 50px !important;
 }
 
 /**

@@ -128,11 +128,38 @@ function selected_video(video_id) {
     var video_title = $('li[yt-id=' + video_id + ']').html();
 
     // Show preview of the video
-    $('.selected-view-preview-container').show();
+    $('.selected-video-preview-container').show();
     $('#selected-video-preview').html('<iframe src="https://www.youtube.com/embed/' + video_id + '?vq=small" style="selected-video-preview"></iframe>');
     $('.create-playlist-search-results').hide();
 
-    // Send data to file to save in database
-    
+    $('#add_video').on('click', function () {
+
+        var start = $('#video_start').val();
+
+        if (start == '') {
+            var start = 0;
+        }
+
+        var playlist_id = $('#playlist_id').html();
+
+        // Send data to file to save in database
+        $.get('../save-video.php', {video_posted: 'true', playlist_id: playlist_id, video_id: video_id, start: start}, function (data) {
+
+            // If the video was successfully added
+            if (data == 'success') {
+
+                $('.selected-video-preview-container').hide();
+
+                var added_video_html = '<div class="song-container smooth-box-shadow white-bg"><p class="margin0 main-text">' + video_title + '</p></div>';
+
+                // Remove the no videos added message and append the video that has been added and remove disabled class from finish creating playlist button
+                $('.no-videos-added').remove();
+                $('.videos-added-container').append(added_video_html);
+                $('#finish-creating-playlist-btn').removeClass('disabled');
+
+            }
+
+        });
+    });
 
 }
