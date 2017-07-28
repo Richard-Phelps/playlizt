@@ -207,5 +207,58 @@
 
         }
 
+        /**
+         * This method will get the name for a playlist
+         *
+         * @param $unique_string: The unique string for the playlist
+         *
+         * @return string
+         */
+
+        public function get_name($unique_string)
+        {
+
+            $get_name = $this->db->query("SELECT name FROM playlists WHERE unique_string = '$unique_string'");
+            $name     = $get_name->fetchObject()->name;
+
+            return $name;
+
+        }
+
+        /**
+         * This method will get the videos for a playlist
+         *
+         * @param $unique_string: The unique string for the playlist to get the videos for
+         *
+         * @return array
+         */
+
+        public function get_videos($unique_string)
+        {
+
+            // Sanitize unique string
+            $unique_string = $this->sanitise($unique_string);
+
+            $get_videos    = $this->db->query("
+                SELECT pv.* FROM playlists p, playlist_videos pv
+                WHERE pv.playlist_id = p.id
+                AND p.unique_string = '$unique_string'
+            ");
+
+            $all_videos = [];
+
+            while ($videos = $get_videos->fetchObject()) {
+
+                $all_videos[] = [
+                    'id'    => $videos->video_id,
+                    'start' => $videos->start,
+                ];
+
+            }
+
+            return $all_videos;
+
+        }
+
     }
 ?>

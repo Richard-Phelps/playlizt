@@ -114,6 +114,8 @@ function is_valid_email(email) {
         return false;
     });
 
+    onYouTubeIframeAPIReady(videos.current.video_id);
+
 })(jQuery);
 
 /**
@@ -130,36 +132,84 @@ function selected_video(video_id) {
     // Show preview of the video
     $('.selected-video-preview-container').show();
     $('#selected-video-preview').html('<iframe src="https://www.youtube.com/embed/' + video_id + '?vq=small" style="selected-video-preview"></iframe>');
+    $('#add_video').attr('vid-id', video_id);
     $('.create-playlist-search-results').hide();
 
     $('#add_video').on('click', function () {
 
-        var start = $('#video_start').val();
+        if (video_id == $(this).attr('vid-id')) {
 
-        if (start == '') {
-            var start = 0;
-        }
+            var start = $('#video_start').val();
 
-        var playlist_id = $('#playlist_id').html();
-
-        // Send data to file to save in database
-        $.get('../save-video.php', {video_posted: 'true', playlist_id: playlist_id, video_id: video_id, start: start}, function (data) {
-
-            // If the video was successfully added
-            if (data == 'success') {
-
-                $('.selected-video-preview-container').hide();
-
-                var added_video_html = '<div class="song-container smooth-box-shadow white-bg"><p class="margin0 main-text">' + video_title + '</p></div>';
-
-                // Remove the no videos added message and append the video that has been added and remove disabled class from finish creating playlist button
-                $('.no-videos-added').remove();
-                $('.videos-added-container').append(added_video_html);
-                $('#finish-creating-playlist-btn').removeClass('disabled');
-
+            if (start == '') {
+                var start = 0;
             }
 
-        });
+            var playlist_id = $('#playlist_id').html();
+
+            // Send data to file to save in database
+            $.get('../save-video.php', {video_posted: 'true', playlist_id: playlist_id, video_id: video_id, start: start}, function (data) {
+
+                // If the video was successfully added
+                if (data == 'success') {
+
+                    $('.selected-video-preview-container').hide();
+
+                    var added_video_html = '<div class="song-container smooth-box-shadow white-bg"><p class="margin0 main-text">' + video_title + '</p></div>';
+
+                    // Remove the no videos added message and append the video that has been added and remove disabled class from finish creating playlist button
+                    $('.no-videos-added').remove();
+                    $('.videos-added-container').append(added_video_html);
+                    $('#finish-creating-playlist-btn').removeClass('disabled');
+
+                }
+
+            });
+
+        }
+
+        $('#video_start').val('');
+
     });
 
+}
+
+// NEED TO CHANGE COMMENTS
+
+var tag = document.createElement('script');
+
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+// 3. This function creates an <iframe> (and YouTube player)
+//    after the API code downloads.
+
+var player;
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+        playerVars: {start: videos.current.start},
+        videoId: videos.current.video_id,
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+        }
+    });
+}
+
+// 4. The API will call this function when the video player is ready.
+function onPlayerReady(event) {
+    event.target.playVideo();
+}
+
+var done = false;
+function onPlayerStateChange(event) {
+    if (event.data == YT.PlayerState.PLAYING && !done) {
+        done = true;
+    }
+
+}
+
+function stopVideo() {
+    player.stopVideo();
 }

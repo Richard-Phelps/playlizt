@@ -54,5 +54,20 @@
 
         }
 
+        /**
+         * This metod will print_r anything and put pre tags around it to make it easier to read
+         *
+         * @param $input: What it is that needs to be passed into print_r
+         */
+
+        public function debug($input)
+        {
+
+            echo '<pre>';
+            print_r($input);
+            echo '</pre>';
+
+        }
+
     }
 ?>
