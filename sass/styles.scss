@@ -113,3 +113,29 @@ header {
     margin: 0 auto;
     border: none;
 }
+
+/* Playlist page */
+
+.playlist-container iframe {
+    width: 100%;
+}
+
+.playlist-options-icon {
+    font-size: 30px;
+}
+
+.playlist-option-active {
+    color: $orange !important;
+}
+
+.playlist-option-inactive {
+    color: $materialize-input-grey !important;
+}
+
+#replay {
+    display: none;
+}
+
+.song-row-options {
+    padding: 22px 15px !important;
+}

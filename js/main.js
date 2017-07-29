@@ -114,7 +114,92 @@ function is_valid_email(email) {
         return false;
     });
 
-    onYouTubeIframeAPIReady(videos.current.video_id);
+    /**
+     * Couple of variable for the playlist
+     */
+
+    window.playing_count = 1;
+    window.repeat        = false;
+    window.loop_current  = false;
+    var player;
+
+    /**
+     * When the repeat playlist option is selected, make it active and set repeat to true
+     */
+
+    $('#repeat-playlist').on('click', function () {
+
+        $('#replay').hide();
+        $('#loop-current').show();
+
+        if (!$(this).hasClass('playlist-option-active')) {
+            window.repeat = true;
+            $(this).addClass('playlist-option-active');
+        } else {
+            window.repeat = false;
+            $(this).removeClass('playlist-option-active').removeClass('main-text-hover-important');
+        }
+
+        // If the playlist finished without repeat on
+        if (window.playing_count == 0) {
+            window.playing_count = 1;
+            onYouTubeIframeAPIReady(videos[window.playing_count].video_id, videos[window.playing_count].start);
+        }
+
+    });
+
+    $('#repeat-playlist').hover(function () {
+        if (!$(this).hasClass('main-text-hover-important') && !$(this).hasClass('playlist-option-active')) {
+            $('#repeat-playlist').addClass('main-text-hover-important');
+        }
+    });
+
+    /**
+     * When the loop current video option is selected, make it active and set loop to true
+     */
+
+    $('#loop-current').on('click', function () {
+
+        if (!$(this).hasClass('playlist-option-active')) {
+            window.loop = true;
+            $(this).addClass('playlist-option-active');
+        } else {
+            window.loop = false;
+            $(this).removeClass('playlist-option-active').removeClass('main-text-hover-important');
+        }
+
+    });
+
+    $('#loop-current').hover(function () {
+        if (!$(this).hasClass('main-text-hover-important') && !$(this).hasClass('playlist-option-active')) {
+            $('#loop-current').addClass('main-text-hover-important');
+        }
+    });
+
+    // When the playlist finished without repeat on and the repeat button is clicked, start from the beginning
+    $('#replay').on('click', function () {
+
+        if (window.playing_count == 0) {
+            window.playing_count = 1;
+            onYouTubeIframeAPIReady(videos[window.playing_count].video_id, videos[window.playing_count].start);
+            $(this).hide();
+            $('#loop-current').show();
+        }
+
+    });
+
+    /**
+     * When the play video button is clicked, play the video
+     */
+
+    $('.play-video').on('click', function () {
+
+        window.playing_count = $(this).attr('vid-count');
+        onYouTubeIframeAPIReady(videos[window.playing_count].video_id, videos[window.playing_count].start);
+        $('#replay').hide();
+        $('#loop-current').show();
+
+    });
 
 })(jQuery);
 
@@ -134,6 +219,7 @@ function selected_video(video_id) {
     $('#selected-video-preview').html('<iframe src="https://www.youtube.com/embed/' + video_id + '?vq=small" style="selected-video-preview"></iframe>');
     $('#add_video').attr('vid-id', video_id);
     $('.create-playlist-search-results').hide();
+    $('#video_start').val('');
 
     $('#add_video').on('click', function () {
 
@@ -168,13 +254,13 @@ function selected_video(video_id) {
 
         }
 
-        $('#video_start').val('');
-
     });
 
 }
 
-// NEED TO CHANGE COMMENTS
+/**
+ * This will create the iframe to play the youtube video
+ */
 
 var tag = document.createElement('script');
 
@@ -182,33 +268,117 @@ tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-// 3. This function creates an <iframe> (and YouTube player)
-//    after the API code downloads.
+/**
+ * This function will setup the video in the iframe
+ *
+ * @param video_id: This is the id for the next video to be played
+ * @param start   : This is the amount of seconds to start the next video at
+ */
 
-var player;
-function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-        playerVars: {start: videos.current.start},
-        videoId: videos.current.video_id,
-        events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
+function onYouTubeIframeAPIReady(video_id, start) {
+
+    if (typeof videos !== 'undefined') {
+
+        // Remove main-bg from all song-container elements and add white-bg then add main-bg to the active song element and remove white-bg
+        $('.song-container').removeClass('main-bg').addClass('white-bg');
+        $('.song-container[vid-count=' + window.playing_count + ']').removeClass('white-bg').addClass('main-bg');
+
+        // Remove white-text from all song-container p elements and add main-text then add white-text to the active song element and remove main-text
+        $('.song-container > p').removeClass('white-text').addClass('main-text');
+        $('.song-container[vid-count=' + window.playing_count + '] > p').removeClass('main-text').addClass('white-text');
+
+        // Remove white-text from all song-container p span elements and add main-text-important then add white-text to the active song element and remove main-text-important
+        $('.song-container > p > span').removeClass('white-text').addClass('main-text-important');
+        $('.song-container[vid-count=' + window.playing_count + '] > p > span').removeClass('main-text-important').addClass('white-text');
+
+        if (!video_id && !start) {
+
+            // Initiate the video video in the playlist
+            player = new YT.Player('player', {
+                playerVars: {start: videos[window.playing_count].start},
+                videoId   : videos[window.playing_count].video_id,
+                events    : {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+
+        } else {
+
+            // Play the next video in the playlist
+            player.loadVideoById({
+                'videoId'         : video_id,
+                'startSeconds'    : start,
+            });
+
         }
-    });
+
+    }
+
 }
 
-// 4. The API will call this function when the video player is ready.
+/**
+ * This function will execute when the youtube video is ready to play
+ *
+ * @param event: The current event
+ */
+
 function onPlayerReady(event) {
     event.target.playVideo();
 }
 
-var done = false;
+/**
+ * This function will execute when the currently playing video is finished
+ *
+ * @param event: The current event
+ */
+
 function onPlayerStateChange(event) {
-    if (event.data == YT.PlayerState.PLAYING && !done) {
-        done = true;
+
+    // If the video currently being played is finished
+    if (event.data == 0) {
+
+        // If loop current video has been turned on, don't go to the next video
+        if (!window.loop) {
+            window.playing_count = (parseInt(window.playing_count) + 1);
+        }
+
+        if (window.playing_count != 0) {
+
+            // If the final video in the playlist has finished
+            if (typeof videos[window.playing_count] === 'undefined') {
+
+                // Only go back to the first video if loop is set to true
+                if (window.repeat) {
+
+                    window.playing_count = 1;
+
+                } else {
+
+                    window.playing_count = 0;
+
+                    // Hide the loop current button
+                    $('#loop-current').hide();
+
+                    // Show the replay playlist button
+                    $('#replay').show();
+
+                }
+
+            }
+
+            // Play the next video
+            onYouTubeIframeAPIReady(videos[window.playing_count].video_id, videos[window.playing_count].start);
+
+        }
+
     }
 
 }
+
+/**
+ * This function will execute when the user stops playing the video
+ */
 
 function stopVideo() {
     player.stopVideo();

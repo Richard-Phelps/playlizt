@@ -26,7 +26,9 @@
         <div class="row mb0">
 
             <div class="col m6 left-align">
-                <p class="margin0 header-text-size header-line-height">Playlizt</p>
+                <a href="<?php echo $config->site_url; ?>" class="white-text-important">
+                    <p class="margin0 header-text-size header-line-height">Playlizt</p>
+                </a>
             </div>
 
             <div class="col m6 right-align">

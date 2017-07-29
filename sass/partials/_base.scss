@@ -41,16 +41,20 @@ html, body {
     background-color: $white;
 }
 
-.white-text {
-    color: $white;
+.white-text-important {
+    color: $white !important;
 }
 
 .main-text {
     color: $orange;
 }
 
-.main-text-important {
+.main-text-important, .main-text-hover-important:hover {
     color: $orange !important;
+}
+
+.grey-text {
+    color: $materialize-input-grey;
 }
 
 /**
@@ -65,6 +69,10 @@ html, body {
     margin-top: 0;
 }
 
+.mt0i {
+    margin-top: 0 !important;
+}
+
 .mb0 {
     margin-bottom: 0;
 }
@@ -73,12 +81,20 @@ html, body {
     margin-bottom: 50px;
 }
 
+.ml25 {
+    margin-left: 25px;
+}
+
 .p0 {
     padding: 0;
 }
 
 .p0i {
     padding: 0 !important;
+}
+
+.pt15i {
+    padding-top: 15px !important;
 }
 
 .pt50 {

@@ -218,8 +218,9 @@
         public function get_name($unique_string)
         {
 
-            $get_name = $this->db->query("SELECT name FROM playlists WHERE unique_string = '$unique_string'");
-            $name     = $get_name->fetchObject()->name;
+            $unique_string = $this->sanitise($unique_string);
+            $get_name      = $this->db->query("SELECT name FROM playlists WHERE unique_string = '$unique_string'");
+            $name          = $get_name->fetchObject()->name;
 
             return $name;
 
@@ -257,6 +258,27 @@
             }
 
             return $all_videos;
+
+        }
+
+        /**
+         * This method will get information like the title for a youtube video
+         *
+         * @param $video_id: The youtube video to get information for
+         *
+         * @return array
+         */
+
+        public function get_video_information($video_id)
+        {
+
+            $json_output = file_get_contents('https://www.googleapis.com/youtube/v3/videos?part=snippet&id=' . $video_id . '&key=AIzaSyDZqUDzM5Iz5H4w7inMMz0Ght_hlxaheS4');
+            $json        = json_decode($json_output, true);
+
+            return [
+                'title'     => $json['items'][0]['snippet']['title'],
+                'thumbnail' => $json['items'][0]['snippet']['thumbnails']['default']['url'],
+            ];
 
         }
 

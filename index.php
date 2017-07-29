@@ -36,7 +36,7 @@
 
             <div class="col s12 pt50i">
                 <h5 class="section-title main-text">What Is Playlizt &amp; How Does It Works</h5>
-                <p>ENTER TEXT HERE</p>
+                <p class="grey-text">ENTER TEXT HERE</p>
             </div>
 
         </div><!-- .row -->
