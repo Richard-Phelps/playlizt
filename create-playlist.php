@@ -57,6 +57,15 @@
 
             </div><!-- .selected-view-preview-container -->
 
+            <div class="input-field col m9">
+                <input id="set_edit_password" type="text" autocomplete="off" class="tooltipped" data-position="bottom" data-delay="0" data-tooltip="Please don't use a password you use for other websites as we don't store this password securely">
+                <label for="set_edit_password" class="main-text-focus-important">Set password to allow people to edit the playlist</label>
+            </div>
+
+            <div class="col m3 right-align pt25i">
+                <button class="btn waves-effect waves-light main-bg main-bg-hover main-bg-focus" type="button" id="save_password">Save Password</button>
+            </div>
+
         </div>
 
         <div class="row mb0 pt50">
