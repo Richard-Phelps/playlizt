@@ -104,9 +104,9 @@
                                         VALUES (:us, :n, '0', 0, :e, NOW())";
                 $create_playlist     = $this->db->prepare($create_playlist_sql);
 
-                $create_playlist->bindParam(':us', $this->unique_string);
-                $create_playlist->bindParam(':n', $this->name);
-                $create_playlist->bindParam(':e', $this->email);
+                $create_playlist->bindParam(':us', $this->unique_string, PDO::PARAM_STR);
+                $create_playlist->bindParam(':n', $this->name, PDO::PARAM_STR);
+                $create_playlist->bindParam(':e', $this->email, PDO::PARAM_STR);
 
                 try {
 
@@ -164,9 +164,9 @@
                         $add_video_sql = "INSERT INTO playlist_videos (playlist_id, video_id, start, added) VALUES (:pid, :vid, :s, NOW())";
                         $add_video     = $this->db->prepare($add_video_sql);
 
-                        $add_video->bindParam(':pid', $playlist_id);
-                        $add_video->bindParam(':vid', $video_id);
-                        $add_video->bindParam(':s', $start);
+                        $add_video->bindParam(':pid', $playlist_id, PDO::PARAM_INT);
+                        $add_video->bindParam(':vid', $video_id, PDO::PARAM_STR);
+                        $add_video->bindParam(':s', $start, PDO::PARAM_INT);
 
                         try {
 
