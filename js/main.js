@@ -115,6 +115,25 @@ function is_valid_email(email) {
     });
 
     /**
+     * This will save the password for the playlist to enable editing
+     */
+
+    $('#save_password').on('click', function () {
+
+        var playlist_password = $('#set_edit_password').val();
+        var playlist_id       = $('#playlist_id').html();
+
+        $.post('../save-playlist-password/', {set_playlist_password: 'true', playlist_password: playlist_password, playlist_id: playlist_id}, function(data) {
+            if (data == 'success') {
+
+                $('#save_password').html('Saved');
+
+            }
+        });
+
+    });
+
+    /**
      * Couple of variable for the playlist
      */
 
@@ -201,6 +220,31 @@ function is_valid_email(email) {
 
     });
 
+    /**
+     * This will initiate the modal
+     */
+
+    $('.modal').modal();
+
+    /**
+     * This will post to the delete video script to delete a video from a playlist
+     */
+
+    $('.remove-video').on('click', function () {
+
+        var unique_string = $('#playlist_unique_string').html();
+        var video_id      = $(this).attr('vid-id');
+
+        $.post('../delete-video/', {delete_video: 'true', unique_string: unique_string, video_id: video_id}, function (data) {
+            if (data == 'success') {
+                $('.video-' + video_id).fadeOut(400, function () {
+                    $(this).remove();
+                });
+            }
+        });
+
+    });
+
 })(jQuery);
 
 /**
@@ -234,7 +278,7 @@ function selected_video(video_id) {
             var playlist_id = $('#playlist_id').html();
 
             // Send data to file to save in database
-            $.get('../save-video.php', {video_posted: 'true', playlist_id: playlist_id, video_id: video_id, start: start}, function (data) {
+            $.post('../save-video/', {video_posted: 'true', playlist_id: playlist_id, video_id: video_id, start: start}, function (data) {
 
                 // If the video was successfully added
                 if (data == 'success') {
@@ -324,7 +368,10 @@ function onYouTubeIframeAPIReady(video_id, start) {
  */
 
 function onPlayerReady(event) {
-    event.target.playVideo();
+    var $ = jQuery;
+    if ($('.edit-playlist-playing-overlay').length == 0) {
+        event.target.playVideo();
+    }
 }
 
 /**

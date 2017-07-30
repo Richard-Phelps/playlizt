@@ -41,6 +41,10 @@ html, body {
     background-color: $white;
 }
 
+.white-bg-important {
+    background-color: $white !important;
+}
+
 .white-text-important {
     color: $white !important;
 }
@@ -49,12 +53,12 @@ html, body {
     color: $orange;
 }
 
-.main-text-important, .main-text-hover-important:hover {
+.main-text-important, .main-text-hover-important:hover, .main-text-very-important {
     color: $orange !important;
 }
 
 .grey-text {
-    color: $materialize-input-grey;
+    color: $grey;
 }
 
 /**
@@ -93,6 +97,10 @@ html, body {
     padding: 0 !important;
 }
 
+.p15 {
+    padding: 15px;
+}
+
 .pt15i {
     padding-top: 15px !important;
 }
@@ -111,6 +119,14 @@ html, body {
 
 .pb50i {
     padding-bottom: 50px !important;
+}
+
+.pb25i {
+    padding-bottom: 25px !important;
+}
+
+.pb20i {
+    padding-bottom: 20px !important;
 }
 
 /**

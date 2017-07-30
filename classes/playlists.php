@@ -51,13 +51,25 @@
         public function get_unique_string($id)
         {
 
-            $unique_string = $this->db->query("
-                SELECT unique_string
-                FROM playlists
-                WHERE id = '$id'
-            ");
+            $unique_string = $this->db->query("SELECT unique_string FROM playlists WHERE id = '$id'");
 
             return $unique_string->fetchObject()->unique_string;
+
+        }
+
+        /**
+         * This method will get the playlist id from the unique string
+         *
+         * @param $unique_string: The unique string for the playlist to get the id from
+         *
+         * @return int
+         */
+
+        public function get_id($unique_string)
+        {
+
+            $id = $this->db->query("SELECT id FROM playlists WHERE unique_string = '$unique_string'");
+            return $id->fetchObject()->id;
 
         }
 
@@ -208,6 +220,59 @@
         }
 
         /**
+         * This method will save the password for editing the playlist
+         *
+         * @param $playlist_id: The playlist to save the password against
+         * @param $password   : The password to be saved against the playlist
+         *
+         * @return string
+         */
+
+        public function set_password($playlist_id, $password)
+        {
+
+            $save_password_sql = "UPDATE playlists SET password = :p WHERE id = :pid";
+            $prepare_password  = $this->db->prepare($save_password_sql);
+
+            $prepare_password->bindParam(':p', $password, PDO::PARAM_STR);
+            $prepare_password->bindParam(':pid', $playlist_id, PDO::PARAM_INT);
+
+            try {
+
+                $prepare_password->execute();
+                echo 'success';
+                exit;
+
+            } catch (PDOException $e) {
+
+                echo 'failed';
+                exit;
+
+            }
+
+        }
+
+        /**
+         * This method will check if a playlist has a password set
+         *
+         * @param $unique_string: The unique string for the playlist to check
+         *
+         * @return boolean
+         */
+
+        public function has_password($unique_string)
+        {
+
+            $check_password = $this->db->query("SELECT COUNT(*) AS count FROM playlists WHERE unique_string = '$unique_string' AND password != ''");
+            if ($check_password->fetchObject()->count == 1) {
+                return true;
+            } else {
+                return false;
+            }
+
+        }
+
+        /**
          * This method will get the name for a playlist
          *
          * @param $unique_string: The unique string for the playlist
@@ -279,6 +344,63 @@
                 'title'     => $json['items'][0]['snippet']['title'],
                 'thumbnail' => $json['items'][0]['snippet']['thumbnails']['default']['url'],
             ];
+
+        }
+
+        /**
+         * This method will check the credentials submitted when a user tries to edit a playlist
+         *
+         * @param $unique_string: The playlist unique string to check the credentials for
+         * @param $email        : The email to check
+         * @param $password     : The password to check
+         *
+         * @return boolean
+         */
+
+        public function check_edit_credentials($unique_string, $email, $password)
+        {
+
+            $check_credentials = $this->db->query("SELECT COUNT(*) as count FROM playlists WHERE email = '$email' AND password = '$password' AND unique_string = '$unique_string'");
+            if ($check_credentials->fetchObject()->count != 0) {
+
+                return true;
+
+            } else {
+
+                return false;
+
+            }
+
+        }
+
+        /**
+         * This method will delete a video from a playlist
+         *
+         * @param $playlist_id: The playlist id for the playlist to delete the video from
+         * @param $video_id   : The id for the video to delete from the playlist
+         */
+
+        public function delete_video($playlist_id, $video_id)
+        {
+
+            $delete_video_sql = "DELETE FROM playlist_videos WHERE playlist_id = :pid AND video_id = :vid";
+            $prepare_delete   = $this->db->prepare($delete_video_sql);
+
+            $prepare_delete->bindParam(':pid', $playlist_id, PDO::PARAM_INT);
+            $prepare_delete->bindParam(':vid', $video_id, PDO::PARAM_STR);
+
+            try {
+
+                $prepare_delete->execute();
+                echo 'success';
+                exit;
+
+            } catch (PDOException $e) {
+
+                echo 'failed';
+                exit;
+
+            }
 
         }
 

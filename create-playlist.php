@@ -50,7 +50,8 @@
                     </div>
 
 
-                    <button class="btn waves-effect waves-light main-bg main-bg-hover main-bg-focus" type="submit" id="add_video">Add to Playlist
+                    <button class="btn waves-effect waves-light main-bg main-bg-hover main-bg-focus" type="submit" id="add_video">
+                        Add to Playlist
                         <i class="material-icons right">add</i>
                     </button>
                 </div>
@@ -82,7 +83,8 @@
 
         </div>
 
-        <a href="<?php echo $config->site_url; ?>/p/?id=<?php echo $unique_string; ?>" class="btn waves-effect waves-light main-bg main-bg-hover main-bg-focus mb50 disabled" id="finish-creating-playlist-btn">Finish Creating Playlist
+        <a href="<?php echo $config->site_url; ?>/p/?id=<?php echo $unique_string; ?>" class="btn waves-effect waves-light main-bg main-bg-hover main-bg-focus mb50 disabled" id="finish-creating-playlist-btn">
+            Finish Creating Playlist
             <i class="material-icons right">keyboard_arrow_right</i>
         </a>
 

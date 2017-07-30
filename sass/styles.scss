@@ -18,6 +18,12 @@
     padding: 24px 24px 0 0 !important;
 }
 
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
 /**
  * Forms
  */
@@ -116,6 +122,10 @@ header {
 
 /* Playlist page */
 
+#playlist_unique_string {
+    display: none;
+}
+
 .playlist-container iframe {
     width: 100%;
 }
@@ -129,7 +139,7 @@ header {
 }
 
 .playlist-option-inactive {
-    color: $materialize-input-grey !important;
+    color: $grey !important;
 }
 
 #replay {
@@ -138,4 +148,35 @@ header {
 
 .song-row-options {
     padding: 22px 15px !important;
+}
+
+.edit-playlist-btn {
+    margin-top: 5px;
+    margin-left: 25px;
+}
+
+.video-play-container {
+    position: relative;
+}
+
+.edit-playlist-playing-overlay {
+    background-color: rgba(158, 158, 158, 0.8);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    padding: 50px;
+}
+
+.edit-playlist-playing-overlay-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.edit-playlist-finish-message {
+    position: absolute;
+    top: 50%;
+    margin-top: -42px;
 }

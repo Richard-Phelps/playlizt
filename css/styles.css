@@ -498,21 +498,26 @@ html, body {
 }
 
 /* line 44, ../sass/partials/_base.scss */
+.white-bg-important {
+  background-color: #FFFFFF !important;
+}
+
+/* line 48, ../sass/partials/_base.scss */
 .white-text-important {
   color: #FFFFFF !important;
 }
 
-/* line 48, ../sass/partials/_base.scss */
+/* line 52, ../sass/partials/_base.scss */
 .main-text {
   color: #F57C00;
 }
 
-/* line 52, ../sass/partials/_base.scss */
-.main-text-important, .main-text-hover-important:hover {
+/* line 56, ../sass/partials/_base.scss */
+.main-text-important, .main-text-hover-important:hover, .main-text-very-important {
   color: #F57C00 !important;
 }
 
-/* line 56, ../sass/partials/_base.scss */
+/* line 60, ../sass/partials/_base.scss */
 .grey-text {
   color: #9E9E9E;
 }
@@ -520,75 +525,90 @@ html, body {
 /**
  * Margin and padding
  */
-/* line 64, ../sass/partials/_base.scss */
+/* line 68, ../sass/partials/_base.scss */
 .margin0 {
   margin: 0;
 }
 
-/* line 68, ../sass/partials/_base.scss */
+/* line 72, ../sass/partials/_base.scss */
 .mt0 {
   margin-top: 0;
 }
 
-/* line 72, ../sass/partials/_base.scss */
+/* line 76, ../sass/partials/_base.scss */
 .mt0i {
   margin-top: 0 !important;
 }
 
-/* line 76, ../sass/partials/_base.scss */
+/* line 80, ../sass/partials/_base.scss */
 .mb0 {
   margin-bottom: 0;
 }
 
-/* line 80, ../sass/partials/_base.scss */
+/* line 84, ../sass/partials/_base.scss */
 .mb50 {
   margin-bottom: 50px;
 }
 
-/* line 84, ../sass/partials/_base.scss */
+/* line 88, ../sass/partials/_base.scss */
 .ml25 {
   margin-left: 25px;
 }
 
-/* line 88, ../sass/partials/_base.scss */
+/* line 92, ../sass/partials/_base.scss */
 .p0 {
   padding: 0;
 }
 
-/* line 92, ../sass/partials/_base.scss */
+/* line 96, ../sass/partials/_base.scss */
 .p0i {
   padding: 0 !important;
 }
 
-/* line 96, ../sass/partials/_base.scss */
+/* line 100, ../sass/partials/_base.scss */
+.p15 {
+  padding: 15px;
+}
+
+/* line 104, ../sass/partials/_base.scss */
 .pt15i {
   padding-top: 15px !important;
 }
 
-/* line 100, ../sass/partials/_base.scss */
+/* line 108, ../sass/partials/_base.scss */
 .pt50 {
   padding-top: 50px;
 }
 
-/* line 104, ../sass/partials/_base.scss */
+/* line 112, ../sass/partials/_base.scss */
 .pt50i {
   padding-top: 50px !important;
 }
 
-/* line 108, ../sass/partials/_base.scss */
+/* line 116, ../sass/partials/_base.scss */
 .pt25i {
   padding-top: 25px !important;
 }
 
-/* line 112, ../sass/partials/_base.scss */
+/* line 120, ../sass/partials/_base.scss */
 .pb50i {
   padding-bottom: 50px !important;
+}
+
+/* line 124, ../sass/partials/_base.scss */
+.pb25i {
+  padding-bottom: 25px !important;
+}
+
+/* line 128, ../sass/partials/_base.scss */
+.pb20i {
+  padding-bottom: 20px !important;
 }
 
 /**
  * Typography
  */
-/* line 120, ../sass/partials/_base.scss */
+/* line 136, ../sass/partials/_base.scss */
 html, body {
   font-family: 'Roboto', sans-serif;
 }
@@ -596,12 +616,12 @@ html, body {
 /**
  * Other
  */
-/* line 128, ../sass/partials/_base.scss */
+/* line 144, ../sass/partials/_base.scss */
 .smooth-box-shadow {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
 
-/* line 132, ../sass/partials/_base.scss */
+/* line 148, ../sass/partials/_base.scss */
 .hidden {
   display: none;
 }
@@ -621,17 +641,24 @@ html, body {
   padding: 24px 24px 0 0 !important;
 }
 
+/* line 21, ../sass/styles.scss */
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
 /**
  * Forms
  */
-/* line 25, ../sass/styles.scss */
+/* line 31, ../sass/styles.scss */
 .input-field input[type=text]:focus + label,
 .input-field input[type=email]:focus + label,
 .input-field input[type=number]:focus + label {
   color: #F57C00 !important;
 }
 
-/* line 31, ../sass/styles.scss */
+/* line 37, ../sass/styles.scss */
 .input-field input[type=text]:focus,
 .input-field input[type=email]:focus,
 .input-field input[type=number]:focus {
@@ -639,7 +666,7 @@ html, body {
   box-shadow: 0 1px 0 0 #F57C00 !important;
 }
 
-/* line 38, ../sass/styles.scss */
+/* line 44, ../sass/styles.scss */
 .input-field input[type=text].invalid:focus,
 .input-field input[type=email].invalid:focus,
 .input-field input[type=number].invalid:focus {
@@ -650,17 +677,17 @@ html, body {
 /**
  * Header
  */
-/* line 49, ../sass/styles.scss */
+/* line 55, ../sass/styles.scss */
 header {
   padding: 15px 0;
 }
 
-/* line 53, ../sass/styles.scss */
+/* line 59, ../sass/styles.scss */
 .header-text-size {
   font-size: 24px;
 }
 
-/* line 57, ../sass/styles.scss */
+/* line 63, ../sass/styles.scss */
 .header-line-height {
   line-height: 1.5;
 }
@@ -668,62 +695,62 @@ header {
 /**
  * Create playlist page
  */
-/* line 65, ../sass/styles.scss */
+/* line 71, ../sass/styles.scss */
 #playlist_id {
   display: none;
 }
 
-/* line 69, ../sass/styles.scss */
+/* line 75, ../sass/styles.scss */
 .song-container {
   padding: 15px;
   margin-top: 15px;
 }
 
-/* line 74, ../sass/styles.scss */
+/* line 80, ../sass/styles.scss */
 .song-container img,
 .song-container span {
   display: inline-block;
   vertical-align: middle;
 }
 
-/* line 80, ../sass/styles.scss */
+/* line 86, ../sass/styles.scss */
 .song-container img {
   height: 40px;
 }
 
-/* line 84, ../sass/styles.scss */
+/* line 90, ../sass/styles.scss */
 .song-container span {
   padding: 14px 16px;
 }
 
-/* line 88, ../sass/styles.scss */
+/* line 94, ../sass/styles.scss */
 .create-playlist-search-results {
   max-height: 300px;
 }
 
-/* line 92, ../sass/styles.scss */
+/* line 98, ../sass/styles.scss */
 .create-playlist-search-results > li {
   padding: 15px;
 }
 
-/* line 96, ../sass/styles.scss */
+/* line 102, ../sass/styles.scss */
 .create-playlist-search-results li img,
 .create-playlist-search-results li span {
   display: inline-block;
   vertical-align: middle;
 }
 
-/* line 102, ../sass/styles.scss */
+/* line 108, ../sass/styles.scss */
 .create-playlist-search-results li img {
   width: auto;
 }
 
-/* line 106, ../sass/styles.scss */
+/* line 112, ../sass/styles.scss */
 .selected-video-preview-container {
   display: none;
 }
 
-/* line 110, ../sass/styles.scss */
+/* line 116, ../sass/styles.scss */
 #selected-video-preview iframe {
   width: 100%;
   height: 300px;
@@ -732,32 +759,73 @@ header {
 }
 
 /* Playlist page */
-/* line 119, ../sass/styles.scss */
+/* line 125, ../sass/styles.scss */
+#playlist_unique_string {
+  display: none;
+}
+
+/* line 129, ../sass/styles.scss */
 .playlist-container iframe {
   width: 100%;
 }
 
-/* line 123, ../sass/styles.scss */
+/* line 133, ../sass/styles.scss */
 .playlist-options-icon {
   font-size: 30px;
 }
 
-/* line 127, ../sass/styles.scss */
+/* line 137, ../sass/styles.scss */
 .playlist-option-active {
   color: #F57C00 !important;
 }
 
-/* line 131, ../sass/styles.scss */
+/* line 141, ../sass/styles.scss */
 .playlist-option-inactive {
   color: #9E9E9E !important;
 }
 
-/* line 135, ../sass/styles.scss */
+/* line 145, ../sass/styles.scss */
 #replay {
   display: none;
 }
 
-/* line 139, ../sass/styles.scss */
+/* line 149, ../sass/styles.scss */
 .song-row-options {
   padding: 22px 15px !important;
+}
+
+/* line 153, ../sass/styles.scss */
+.edit-playlist-btn {
+  margin-top: 5px;
+  margin-left: 25px;
+}
+
+/* line 158, ../sass/styles.scss */
+.video-play-container {
+  position: relative;
+}
+
+/* line 162, ../sass/styles.scss */
+.edit-playlist-playing-overlay {
+  background-color: rgba(158, 158, 158, 0.8);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  padding: 50px;
+}
+
+/* line 172, ../sass/styles.scss */
+.edit-playlist-playing-overlay-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* line 178, ../sass/styles.scss */
+.edit-playlist-finish-message {
+  position: absolute;
+  top: 50%;
+  margin-top: -42px;
 }
