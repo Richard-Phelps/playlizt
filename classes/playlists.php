@@ -149,9 +149,10 @@
          * @param $playlist_id: The id of the playlist to add the video to
          * @param $video_id   : The youtube video id
          * @param $start      : How many seconds into the video it should start playing
+         * @param $order      : The order for this video
          */
 
-        public function add_video($playlist_id, $video_id, $start)
+        public function add_video($playlist_id, $video_id, $start, $order)
         {
 
             global $errors, $config;
@@ -173,12 +174,13 @@
                     if ($check_video->fetchObject()->count == 0) {
 
                         // Add the video to the playlist_videos table
-                        $add_video_sql = "INSERT INTO playlist_videos (playlist_id, video_id, start, added) VALUES (:pid, :vid, :s, NOW())";
+                        $add_video_sql = "INSERT INTO playlist_videos (playlist_id, video_id, start, video_order, added) VALUES (:pid, :vid, :s, :o, NOW())";
                         $add_video     = $this->db->prepare($add_video_sql);
 
                         $add_video->bindParam(':pid', $playlist_id, PDO::PARAM_INT);
                         $add_video->bindParam(':vid', $video_id, PDO::PARAM_STR);
                         $add_video->bindParam(':s', $start, PDO::PARAM_INT);
+                        $add_video->bindParam(':o', $order, PDO::PARAM_INT);
 
                         try {
 
@@ -309,6 +311,7 @@
                 SELECT pv.* FROM playlists p, playlist_videos pv
                 WHERE pv.playlist_id = p.id
                 AND p.unique_string = '$unique_string'
+                ORDER BY video_order ASC
             ");
 
             $all_videos = [];
@@ -399,6 +402,53 @@
 
                 echo 'failed';
                 exit;
+
+            }
+
+        }
+
+        /**
+         * This method will change the order of a video
+         *
+         * @param $playlist_id: The playlist which the video belongs to
+         * @param video_id    : The id of the video to change the order for
+         * @param $order      : The order to set for the video
+         */
+
+        public function save_video_order($playlist_id, $video_id, $order)
+        {
+
+            // Check if the order has changed or not
+            $check_order = $this->db->query("
+                SELECT COUNT(*) AS count
+                FROM playlist_videos
+                WHERE playlist_id = '$playlist_id'
+                AND video_id = '$video_id'
+                AND video_order = '$order'
+            ");
+
+            // If the video order has changed
+            if ($check_order->fetchObject()->count == 0) {
+
+                $update_order_sql     = "UPDATE playlist_videos SET video_order = :o WHERE video_id = :vid AND playlist_id = :pid";
+                $prepare_update_order = $this->db->prepare($update_order_sql);
+
+                $prepare_update_order->bindParam(':o', $order, PDO::PARAM_INT);
+                $prepare_update_order->bindParam(':vid', $video_id, PDO::PARAM_STR);
+                $prepare_update_order->bindParam(':pid', $playlist_id, PDO::PARAM_INT);
+
+                try {
+
+                    $prepare_update_order->execute();
+                    echo 'success';
+                    exit;
+
+                } catch (PDOException $e) {
+
+                    echo 'failed';
+                    exit;
+
+                }
 
             }
 

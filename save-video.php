@@ -9,11 +9,11 @@
         $data_sent = $validate->sanitise($_POST);
         extract($data_sent);
 
-        if (isset($playlist_id) && !empty($playlist_id) && isset($video_id) && !empty($video_id)) {
+        if (isset($playlist_id) && !empty($playlist_id) && isset($video_id) && !empty($video_id) && isset($order) && !empty($order)) {
 
             // Add the video to the playlist
             $playlists = new playlists();
-            $playlists->add_video($playlist_id, $video_id, $start);
+            $playlists->add_video($playlist_id, $video_id, $start, $order);
 
         } else {
 

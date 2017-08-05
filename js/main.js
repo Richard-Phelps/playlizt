@@ -245,16 +245,6 @@ function is_valid_email(email) {
 
     });
 
-    /**
-     * This will allow the videos on the create playlist page to be sortable
-     */
-
-    // $('.videos-added-container').sortable({
-    //     items: ':not(.sort-disabled)',
-    // }).bind('sortupdate', function () {
-    //     alert('test');
-    // });
-
 })(jQuery);
 
 /**
@@ -262,6 +252,8 @@ function is_valid_email(email) {
  *
  * @param video_id: The id of the video to save
  */
+
+window.video_count = 0;
 
 function selected_video(video_id) {
 
@@ -279,6 +271,8 @@ function selected_video(video_id) {
 
         if (video_id == $(this).attr('vid-id')) {
 
+            window.video_count++;
+
             var start = $('#video_start').val();
 
             if (start == '') {
@@ -288,31 +282,37 @@ function selected_video(video_id) {
             var playlist_id = $('#playlist_id').html();
 
             // Send data to file to save in database
-            $.post('../save-video/', {video_posted: 'true', playlist_id: playlist_id, video_id: video_id, start: start}, function (data) {
+            $.post('../save-video/', {video_posted: 'true', playlist_id: playlist_id, video_id: video_id, start: start, order: window.video_count}, function (data) {
 
                 // If the video was successfully added
                 if (data == 'success') {
 
                     $('.selected-video-preview-container').hide();
 
-                    var added_video_html = '<div class="song-container smooth-box-shadow white-bg" vid-id="' + video_id + '"><p class="margin0 main-text">' + video_title + '</p></div>';
+                    var added_video_html = '<div class="song-container smooth-box-shadow white-bg" vid-id="' + video_id + '"><i class="material-icons reorder-icon pointer-cursor">reorder</i><p class="margin0 main-text added-video-title">' + video_title + '</p></div>';
 
                     // Remove the no videos added message and append the video that has been added and remove disabled class from finish creating playlist button
                     $('.no-videos-added').remove();
+
+                    // After appending the video, setup the fucntionality to re-order the videos and save the new order
                     $('.videos-added-container').append(added_video_html).sortable({
                         forcePlaceholderSize: true,
+                        handle              : $('.reorder-icon'),
                     }).bind('sortupdate', function () {
 
-                        var songs = [];
+                        var songs = '';
 
                         // Loop through each song and set the order from the key
                         $('.song-container').each(function (key, value) {
-                            songs[$(this).attr('vid-id')] = key;
+                            songs = songs + $(this).attr('vid-id') + '=' + key + ',';
                         });
 
-                        console.log(songs);
+                        $.post('../reorder-videos/', {reorder: 'true', playlist_id: playlist_id, songs: JSON.stringify(songs)}, function (data) {
+                            console.log('Successfully re-ordered videos!');
+                        });
 
                     });
+
                     $('#finish-creating-playlist-btn').removeClass('disabled');
 
                 }
