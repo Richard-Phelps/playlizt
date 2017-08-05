@@ -77,7 +77,7 @@
 
             <div class="col s12 pb50i videos-added-container">
 
-                <p class="no-videos-added">No videos have been added to the playlist yet.</p>
+                <p class="no-videos-added sort-disabled">No videos have been added to the playlist yet.</p>
 
             </div>
 

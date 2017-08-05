@@ -120,6 +120,11 @@ header {
     border: none;
 }
 
+.sortable-placeholder {
+    border: 2px dashed $grey;
+    margin-top: 15px;
+}
+
 /* Playlist page */
 
 #playlist_unique_string {

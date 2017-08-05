@@ -245,6 +245,16 @@ function is_valid_email(email) {
 
     });
 
+    /**
+     * This will allow the videos on the create playlist page to be sortable
+     */
+
+    // $('.videos-added-container').sortable({
+    //     items: ':not(.sort-disabled)',
+    // }).bind('sortupdate', function () {
+    //     alert('test');
+    // });
+
 })(jQuery);
 
 /**
@@ -285,11 +295,24 @@ function selected_video(video_id) {
 
                     $('.selected-video-preview-container').hide();
 
-                    var added_video_html = '<div class="song-container smooth-box-shadow white-bg"><p class="margin0 main-text">' + video_title + '</p></div>';
+                    var added_video_html = '<div class="song-container smooth-box-shadow white-bg" vid-id="' + video_id + '"><p class="margin0 main-text">' + video_title + '</p></div>';
 
                     // Remove the no videos added message and append the video that has been added and remove disabled class from finish creating playlist button
                     $('.no-videos-added').remove();
-                    $('.videos-added-container').append(added_video_html);
+                    $('.videos-added-container').append(added_video_html).sortable({
+                        forcePlaceholderSize: true,
+                    }).bind('sortupdate', function () {
+
+                        var songs = [];
+
+                        // Loop through each song and set the order from the key
+                        $('.song-container').each(function (key, value) {
+                            songs[$(this).attr('vid-id')] = key;
+                        });
+
+                        console.log(songs);
+
+                    });
                     $('#finish-creating-playlist-btn').removeClass('disabled');
 
                 }
