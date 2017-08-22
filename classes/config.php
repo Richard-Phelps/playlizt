@@ -9,11 +9,11 @@
         public function __construct()
         {
 
-            $this->site_url = 'http://192.168.33.10/personal-playlizt';
-            $this->db_host  = 'localhost';
-            $this->db_user  = 'root';
-            $this->db_pass  = 'root';
-            $this->db_name  = 'personal_playlizt';
+            $this->site_url = '';
+            $this->db_host  = '';
+            $this->db_user  = '';
+            $this->db_pass  = '';
+            $this->db_name  = '';
             $this->charset  = 'utf8';
 
         }
